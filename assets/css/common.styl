@@ -1,0 +1,97 @@
+@import '_vars'
+@import '_sticky-footer'
+// container
+body
+	background: #fff
+	position: relative
+	font-family: 'Open Sans', sans-serif;
+	color: $base_text
+	width: 100%
+	overflow-x: hidden
+	h1, h2, h3, h4, h5, h6
+		font-weight: 600
+	@media (max-width: $screen-xs-min)
+		h3
+			font-size: 20px
+	a
+		text-decoration: underline
+		&:hover
+			text-decoration: none
+	p
+		line-height: 1.7
+	.container
+		@media (min-width: 1350px)
+			width: 1330px !important
+			max-width: 1330px !important
+			min-width: 1330px !important
+			margin: 0 auto
+	.wrap
+		padding: 80px 0 55px 0
+		@media (max-width: $screen-xs-min)
+			padding-top: 0
+	@media (min-width: 1400px)
+		background: transparent
+		main
+			background-image: url('../img/bg.jpg') !important
+			background-attachment: fixed !important
+			display: flex
+			flex-direction: column
+		.wrap
+			width: 1400px
+			margin: 0 auto
+			background: #fff
+			flex: 1 0 auto
+	.flex
+		display: flex
+		@media (max-width: $screen-xs-min)
+			display: block
+	.main-wrap
+		.aside-left, .aside-right
+			flex: 0 0 260px
+		.content
+			margin: 0 40px
+			flex: 1 0 0px
+		@media (max-width: $screen-xs-min)
+			.aside-left, .aside-right
+				margin-bottom: 20px
+			.content
+				margin: 0
+	.padding-box
+		padding: 0 0 20px 20px
+		@media (max-width: $screen-xs-min)
+			padding: 0
+	.word-break
+		word-break: break-word
+	.title
+		position: relative
+		margin: 10px 0 20px 0
+		&.green
+			color: $color_1
+		&:before
+			content: ''
+			width: 10px
+			height: 44px
+			position: absolute
+			left: -20px
+			top: 50%
+			margin-top: -23px
+			background: $color_1
+			@media (max-width: $screen-xs-min)
+				content: none
+	.link-black
+		color: $base_text
+		font-weight: 600
+	.text-small
+		font-size: 12px
+		line-height: 1.5
+
+.no-flexbox
+	.flex
+		display: table
+	.flex-item
+		display: table-cell
+	.aside-left, .aside-right
+		width: 260px
+	.content
+		padding: 0 40px
+
