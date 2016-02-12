@@ -1,7 +1,7 @@
 node_modules
 tmp
-/blocks/**/**/*.css
-/blocks/**/**/*.html
+/public/blocks/**/**/*.css
+/public/blocks/**/**/*.html
 /public/css/animate.css
 /public/css/app.css
 /public/css/common.css
