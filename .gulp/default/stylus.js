@@ -14,11 +14,13 @@ var changed = require('gulp-changed');
 var gutil = require('gulp-util');
 var gulpif = require('gulp-if');
 var autoprefixerOptions = require('../utils/config').autoprefixer;
+var sourcemaps = require('gulp-sourcemaps');
+var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 src.styl = {
 	'files': [
-		'assets/**/**/**/*.styl',
-		'!assets/**/**/**/_*.styl'
+		'assets/{css,blocks}/**/**/*.styl',
+		'!assets/{css,blocks}/**/**/_*.styl'
 	],
 	'dest': 'public'
 };
@@ -26,9 +28,11 @@ src.styl = {
 gulp.task('styl', function() {
 	return gulp.src(src.styl.files)
 	// .pipe(changed(src.styl.dest, {extension: '.css'}))
+	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(stylus())
 	.pipe(gulpif(gutil.env.prefix, postcss([autoprefixer(autoprefixerOptions)])))
+	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest(src.styl.dest))
 	.pipe(browserSync.reload({stream: true}))
 });

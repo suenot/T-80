@@ -15,8 +15,8 @@ var errorHandler = require('../utils/errorHandler');
 gulp.task('jade', function() {
 	return gulp.src(
 		[
-			'assets/**/**/**/*.jade'
-		]
+			'assets/{pages,blocks}/**/**/*.jade'
+		], {cwd: 'assets'}
 	)
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(changed('public', {extension: '.html'}))
