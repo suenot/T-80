@@ -1,0 +1,51 @@
+.socialShare {
+  text-align: right;
+}
+@media (max-width: 320px) {
+  .socialShare {
+    text-align: center;
+  }
+}
+.socialShare__title {
+  padding-right: 25px;
+}
+@media (max-width: 320px) {
+  .socialShare__title {
+    display: block;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+}
+.socialShare__link {
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  padding: 10px 0;
+  font-size: 17px;
+  text-align: center;
+  margin-left: 5px;
+  text-decoration: none;
+}
+.socialShare__link:first-child {
+  margin-left: 0;
+}
+.socialShare__link.fa-facebook {
+  background: #507cbe;
+}
+.socialShare__link.fa-twitter {
+  background: #63cdf1;
+}
+.socialShare__link.fa-vk {
+  background: #597b9f;
+}
+.socialShare__link.fa-tumblr {
+  background: #333;
+}
+.socialShare__link.fa-plus {
+  background: #fc6d4c;
+}
+.socialShare__link:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+}

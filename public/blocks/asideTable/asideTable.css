@@ -1,0 +1,128 @@
+.asideTable {
+  margin-bottom: 15px;
+}
+.asideTable__head {
+  background: #81c784;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 5px;
+  text-align: center;
+}
+.asideTable__item {
+  height: 50px;
+  background: #eee;
+  border-top: 1px solid #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+@media (max-width: 320px) {
+  .asideTable__item {
+    height: 80px;
+  }
+}
+.asideTable__body.classA .asideTable__itemClass {
+  background: #81c784;
+}
+.asideTable__body.classB .asideTable__itemClass {
+  background: #ffab40;
+}
+.asideTable__itemClass {
+  height: 49px;
+  width: 42px;
+  color: #fff;
+  padding: 14px;
+  text-align: center;
+  float: left;
+}
+@media (max-width: 320px) {
+  .asideTable__itemClass {
+    height: 79px;
+  }
+}
+.asideTable__itemLogo {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  position: relative;
+  text-align: center;
+}
+@media (max-width: 320px) {
+  .asideTable__itemLogo {
+    padding: 5px;
+  }
+}
+.asideTable__itemLogo:hover img,
+.asideTable__itemLogo:active img {
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+}
+.asideTable__itemLogo:hover .asideTable__itemHover,
+.asideTable__itemLogo:active .asideTable__itemHover {
+  opacity: 1;
+}
+.asideTable__itemHover {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -25px;
+  width: 100%;
+  height: 49px;
+  background: rgba(175,175,175,0.8);
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+  text-align: center;
+}
+@media (max-width: 320px) {
+  .asideTable__itemHover {
+    position: static;
+    opacity: 1;
+    background: transparent;
+    padding: 5px;
+    margin: 0;
+    height: auto;
+  }
+}
+.asideTable__itemLink {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 12px;
+  padding: 16px 10px;
+  display: inline-block;
+}
+.asideTable__itemLink:last-child {
+  margin-right: 0;
+}
+.asideTable__itemLink:hover {
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 320px) {
+  .asideTable__itemLink {
+    color: #333;
+  }
+}
+.no-flexbox .asideTable__item {
+  display: table;
+  width: 100%;
+}
+.no-flexbox .asideTable__class {
+  display: table-cell;
+  vertical-align: middle;
+}
+.no-flexbox .asideTable__itemLogo {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+}
+.no-flexbox .asideTable__itemHover {
+  margin: 0;
+  top: 0;
+}

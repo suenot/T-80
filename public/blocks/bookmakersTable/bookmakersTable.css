@@ -1,0 +1,101 @@
+.bookmakersTable {
+  margin-bottom: 45px;
+}
+.bookmakersTable tbody {
+  border-bottom: 5px solid #fff;
+}
+.bookmakersTable tbody tr.even {
+  background: #eee;
+}
+.bookmakersTable td {
+  text-align: center;
+  padding: 10px;
+}
+.bookmakersTable th {
+  font-size: 12px;
+  background: #81c784;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+}
+.bookmakersTable th:last-child {
+  width: 0;
+}
+.bookmakersTable td:last-child {
+  white-space: nowrap;
+}
+@media (max-width: 320px) {
+  .bookmakersTable__class {
+    width: 70px !important;
+    position: relative;
+    text-align: right !important;
+    padding: 10px 20px !important;
+  }
+}
+.bookmakersTable__logo img {
+  width: 100px;
+}
+.bookmakersTable__btn {
+  width: 70px;
+  white-space: normal;
+  font-size: 9px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  padding: 2px;
+}
+.bookmakersTable__btn.bet {
+  background: #81c784;
+}
+.bookmakersTable__btn.site {
+  background: #ffab40;
+}
+.bookmakersTable__btn:hover {
+  color: #fff;
+  opacity: 0.7;
+}
+.bookmakersTable .fa-star {
+  color: #fdd835;
+}
+.bookmakersTable .fa-star+.fa-star {
+  margin-left: 2px;
+}
+.bookmakersTable .fa-dollar:before,
+.bookmakersTable .fa-rub:before {
+  font-size: 13px;
+  padding-left: 2px;
+}
+.bookmakersTable .fa-check-circle {
+  color: #81c784;
+  font-size: 25px;
+}
+.bookmakersTable .classA .bookmakersTable__class {
+  background: #c8e6c9;
+}
+.bookmakersTable .classB .bookmakersTable__class {
+  background: #ffcc80;
+}
+.bookmakersTable .classB.first {
+  border-top: 5px solid #fff;
+}
+.bookmakersTable .classC .bookmakersTable__class {
+  background: #ff8a80;
+}
+.bookmakersTable .classC.first {
+  border-top: 5px solid #fff;
+}
+.bookmakersTable.footable .footable-row-detail-inner {
+  width: 100%;
+}
+.bookmakersTable.footable .footable-row-detail-name {
+  text-align: left !important;
+}
+.bookmakersTable.footable .footable-row-detail-value,
+.bookmakersTable.footable .footable-row-detail-name {
+  padding: 5px 0;
+}
+.bookmakersTable.footable .footable-toggle {
+  position: absolute;
+  left: 10px;
+}
