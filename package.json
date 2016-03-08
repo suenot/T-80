@@ -34,5 +34,7 @@
   },
   "author": "decore",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "gulp-nunjucks": "^2.2.0"
+  }
 }

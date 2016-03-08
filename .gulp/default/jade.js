@@ -13,11 +13,7 @@ var filter = require('gulp-filter');
 var errorHandler = require('../utils/errorHandler');
 
 gulp.task('jade', function() {
-	return gulp.src(
-		[
-			'assets/{pages,blocks}/**/**/*.jade'
-		], {cwd: 'assets'}
-	)
+	return gulp.src(['assets/**/**/**/*.jade'])
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(changed('public', {extension: '.html'}))
 	.pipe(gulpif(global.isWatching, cached('jade')))

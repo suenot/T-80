@@ -10,6 +10,7 @@ gulp.task('default', function(cb) {
 			'sass',
 			'styl',
 			'jade'
+			// 'nunjucks'
 		],
 		[
 			'server',
