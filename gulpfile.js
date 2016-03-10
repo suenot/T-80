@@ -9,7 +9,7 @@ gulp.task('default', function(cb) {
 		[
 			'sass',
 			'styl',
-			// 'jade'
+			'jade',
 			'nunjucks'
 		],
 		[
