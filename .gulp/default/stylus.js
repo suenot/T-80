@@ -16,6 +16,7 @@ var gulpif = require('gulp-if');
 var autoprefixerOptions = require('../utils/config').autoprefixer;
 var sourcemaps = require('gulp-sourcemaps');
 var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+var prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
 
 src.styl = {
 	'files': [
@@ -31,7 +32,7 @@ gulp.task('styl', function() {
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(stylus())
-	.pipe(gulpif(gutil.env.prefix, postcss([autoprefixer(autoprefixerOptions)])))
+	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions)])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest(src.styl.dest))
 	.pipe(browserSync.reload({stream: true}))
