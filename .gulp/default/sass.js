@@ -9,6 +9,7 @@ var autoprefixerOptions = require('../utils/config').autoprefixer;
 var browserSync = require('browser-sync');
 var sourcemaps = require('gulp-sourcemaps');
 var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+var prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
 
 gulp.task('sass', function () {
 	gulp.src([
@@ -17,7 +18,7 @@ gulp.task('sass', function () {
 	])
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(sass().on('error', sass.logError))
-	.pipe(gulpif(gutil.env.prefix, postcss([autoprefixer(autoprefixerOptions)])))
+	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions)])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest('public'))
 	.pipe(browserSync.reload({stream: true}))

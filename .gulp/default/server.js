@@ -6,15 +6,12 @@ var gutil = require('gulp-util');
 
 var serverOpen = false;
 var reloadBrowser = false;
-if(gutil.env.open === true) {
+if (gutil.env.open === true) {
 	serverOpen = true;
 };
-if(gutil.env.live === true) {
+if (gutil.env.live === true) {
 	reloadBrowser = true;
 };
-if(gutil.env.prefix == true) {
-
-}
 
 gulp.task('server', function() {
 	browserSync({

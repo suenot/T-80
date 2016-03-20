@@ -36,5 +36,7 @@
   },
   "author": "decore",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "gulp-rimraf": "^0.2.0"
+  }
 }

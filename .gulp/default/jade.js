@@ -29,6 +29,6 @@ gulp.task('jade', function() {
 	.pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('setWatch', function() {
-	global.isWatching = true;
-});
+// gulp.task('setWatch', function() {
+// 	global.isWatching = true;
+// });

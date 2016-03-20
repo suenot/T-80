@@ -1,10 +1,5 @@
 node_modules
 tmp
-/public/blocks/**/**/*.css
-/public/blocks/**/**/*.html
-/public/css/animate.css
-/public/css/app.css
-/public/css/common.css
 
 # Packages #
 ############
