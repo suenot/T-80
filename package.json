@@ -22,6 +22,7 @@
     "gulp-stylus": "^2.0.2",
     "gulp-util": "^3.0.6",
     "postcss": "^5.0.9",
+    "postcss-flexibility": "^1.0.3",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.2"
   },

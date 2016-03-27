@@ -18,7 +18,7 @@ gulp.task('sass', function () {
 	])
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(sass().on('error', sass.logError))
-	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions)])))
+	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions), require('postcss-flexibility')])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest('public'))
 	.pipe(browserSync.reload({stream: true}))

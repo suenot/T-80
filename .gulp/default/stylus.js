@@ -32,7 +32,7 @@ gulp.task('styl', function() {
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(stylus())
-	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions)])))
+	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions), require('postcss-flexibility')])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest(src.styl.dest))
 	.pipe(browserSync.reload({stream: true}))
