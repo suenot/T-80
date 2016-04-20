@@ -14,6 +14,7 @@
 ```--open``` - open site in browser
 ```--live``` - livereload turnOn
 ```--prefix``` - css prefixs for old browsers, autostart in production
+```--build``` - without server and watch
 
 
 ### For production: without sourcemaps in css and with clean *public* folder:

@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var gutil = require('gulp-util');
+var build = gutil.env.build;
 
 var serverOpen = false;
 var reloadBrowser = false;
@@ -14,18 +15,20 @@ if (gutil.env.live === true) {
 };
 
 gulp.task('server', function() {
-	browserSync({
-		server: {
-			baseDir: 'public'
-		},
-		notify: false,
-		scrollProportionally: false,
-		ghostMode: {
-			clicks: false,
-			forms: false,
-			scroll: false
-		},
-		open: serverOpen,
-		codeSync: reloadBrowser
-	});
+	if (!build) {
+		browserSync({
+			server: {
+				baseDir: 'public'
+			},
+			notify: false,
+			scrollProportionally: false,
+			ghostMode: {
+				clicks: false,
+				forms: false,
+				scroll: false
+			},
+			open: serverOpen,
+			codeSync: reloadBrowser
+		});
+	}
 });
