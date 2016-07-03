@@ -26,7 +26,6 @@ gulp.task('jade', function() {
 		basedir: 'assets'
 	}))
 	.pipe(gulp.dest('public'))
-	.pipe(browserSync.reload({stream: true}))
 });
 
 // gulp.task('setWatch', function() {

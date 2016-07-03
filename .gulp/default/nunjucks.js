@@ -13,5 +13,4 @@ gulp.task('nunjucks', function() {
 		searchPaths: ['assets']
 	}))
 	.pipe(gulp.dest('public'))
-	.pipe(browserSync.reload({stream: true}))
 });
