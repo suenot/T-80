@@ -1,12 +1,12 @@
 'use strict';
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var gutil = require('gulp-util');
-var build = gutil.env.build;
+let gulp = require('gulp');
+let browserSync = require('browser-sync');
+let reload = browserSync.reload;
+let gutil = require('gulp-util');
+let build = gutil.env.build;
 
-var serverOpen = false;
-var reloadBrowser = false;
+let serverOpen = false;
+let reloadBrowser = false;
 if (gutil.env.open === true) {
 	serverOpen = true;
 };

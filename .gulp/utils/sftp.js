@@ -1,8 +1,8 @@
 'use strict';
-var gulp = require('gulp');
-var sftp = require('gulp-sftp');
+let gulp = require('gulp');
+let sftp = require('gulp-sftp');
 
-var server = {
+let server = {
 	host: '185.5.250.59',
 	user: 'frontend',
 	remotePath: '/home/frontend/sites/prestapro.ru'

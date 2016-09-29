@@ -1,7 +1,9 @@
 // Error options
-var gutil = require('gulp-util');
+let gutil = require('gulp-util');
 
-onError = function(err) {
-	gutil.beep(),
-	gutil.log(gutil.colors.red(err))
-};
+module.exports = {
+	onError: function(err) {
+		gutil.beep(),
+		gutil.log(gutil.colors.red(err))
+	}
+}

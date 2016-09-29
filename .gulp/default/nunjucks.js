@@ -1,10 +1,10 @@
 'use strict';
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var browserSync = require('browser-sync');
-var src = {};
-var errorHandler = require('../utils/errorHandler');
-var nunjucks = require('gulp-nunjucks-html');
+let gulp = require('gulp');
+let plumber = require('gulp-plumber');
+let browserSync = require('browser-sync');
+let src = {};
+let onError = require('../utils/errorHandler').onError;
+let nunjucks = require('gulp-nunjucks-html');
 
 gulp.task('nunjucks', function() {
 	return gulp.src(['assets/**/**/**/*.html'])

@@ -1,16 +1,16 @@
 'use strict';
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var src = {};
-// var jadeInheritance = require('gulp-jade-inheritance');
-var jade = require('gulp-jade');
-// var changed = require('gulp-changed');
-// var cached = require('gulp-cached');
-// var gulpif = require('gulp-if');
-// var filter = require('gulp-filter');
-var errorHandler = require('../utils/errorHandler');
+let gulp = require('gulp');
+let plumber = require('gulp-plumber');
+let browserSync = require('browser-sync');
+let reload = browserSync.reload;
+let src = {};
+// let jadeInheritance = require('gulp-jade-inheritance');
+let jade = require('gulp-jade');
+// let changed = require('gulp-changed');
+// let cached = require('gulp-cached');
+// let gulpif = require('gulp-if');
+// let filter = require('gulp-filter');
+let onError = require('../utils/errorHandler').onError;
 
 gulp.task('jade', function() {
 	return gulp.src(['assets/**/**/**/*.jade'])
