@@ -13,5 +13,6 @@ gulp.task('watch', function() {
 		gulp.watch('assets/{css,blocks,vendor}/**/**/**/**/*.{sass,scss}', ['sass']);
 		gulp.watch('assets/{css,blocks,vendor}/**/**/**/**/*.css', ['livereload']);
 		gulp.watch(['assets/**/*.png', 'assets/**/*.jpg', 'assets/**/*.gif', 'assets/**/*.ico', 'assets/**/*.txt', 'assets/**/*.xml', 'assets/**/*.eot', 'assets/**/*.svg', 'assets/**/*.ttf', 'assets/**/*.woff', 'assets/**/*.woff2', 'assets/**/*.otf', 'assets/**/*.js', 'assets/**/*.css'], ['copy']);
+		// gulp.start('scripts:watch');
 	}
 });
