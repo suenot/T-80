@@ -1,88 +1,35 @@
-let gulp = require("gulp");
-let gutil = require("gulp-util");
-let webpack = require("webpack");
-let WebpackDevServer = require("webpack-dev-server");
-let webpackConfig = require("../../webpack.config.js");
-var build = gutil.env.build;
+import gulp from 'gulp';
+import webpackStream from 'webpack-stream';
+import plumber from 'gulp-plumber';
+import errorHandler from 'gulp-plumber-error-handler';
+import statsLogger from 'webpack-stats-logger';
+import makeWebpackConfig from '../../webpack.config.js';
 
-gulp.task('webpack', function() {
-	if (!build) {
-		gulp.start('webpack-dev-server');
-	} else {
-		gulp.start('webpack:build');
-	}
-});
-// The development server (the recommended option for development)
-// gulp.task("default", ["webpack-dev-server"]);
+const { NODE_ENV, NOTIFY } = process.env;
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
-// Build and watch cycle (another option for development)
-// Advantage: No server required, can run app from filesystem
-// Disadvantage: Requests are not blocked until bundle is available,
-//               can serve an old app on refresh
-gulp.task("build-dev", ["webpack:build-dev"], function() {
-	gulp.watch(["app/**/*"], ["webpack:build-dev"]);
-});
-
-// Production build
-// gulp.task("build", ["webpack:build"]);
-
-gulp.task("webpack:build", function(callback) {
-	// modify some webpack config options
-	let myConfig = Object.create(webpackConfig);
-	myConfig.plugins = myConfig.plugins.concat(
-		new webpack.DefinePlugin({
-			"process.env": {
-				// This has effect on the react lib size
-				"NODE_ENV": JSON.stringify("production")
-			}
-		}),
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin()
-	);
-
-	// run webpack
-	webpack(myConfig, function(err, stats) {
-		if(err) throw new gutil.PluginError("webpack:build", err);
-		gutil.log("[webpack:build]", stats.toString({
-			colors: true
-		}));
-		callback();
+function runWebpack(watch = false) {
+	const webpackConfig = makeWebpackConfig({
+		watch,
+		debug: isDevelopment,
+		sourcemaps: isDevelopment,
+		notify: NOTIFY
 	});
+
+	return gulp
+		.src('assets/js/app.webpack.js')
+		.pipe(plumber({errorHandler: errorHandler(`Error in 'scripts' task`)}))
+		.pipe(webpackStream(webpackConfig, null, statsLogger))
+		.pipe(gulp.dest('public/js'));
+}
+
+gulp.task('webpack', () => {
+	if (!isDevelopment) {
+		return runWebpack(false);
+	};
 });
-
-// modify some webpack config options
-let myDevConfig = Object.create(webpackConfig);
-myDevConfig.devtool = "sourcemap";
-myDevConfig.debug = true;
-
-// create a single instance of the compiler to allow caching
-let devCompiler = webpack(myDevConfig);
-
-gulp.task("webpack:build-dev", function(callback) {
-	// run webpack
-	devCompiler.run(function(err, stats) {
-		if(err) throw new gutil.PluginError("webpack:build-dev", err);
-		gutil.log("[webpack:build-dev]", stats.toString({
-			colors: true
-		}));
-		callback();
-	});
-});
-
-gulp.task("webpack-dev-server", function(callback) {
-	// modify some webpack config options
-	let myConfig = Object.create(webpackConfig);
-	myConfig.devtool = "eval";
-	myConfig.debug = true;
-
-	// Start a webpack-dev-server
-	new WebpackDevServer(webpack(myConfig), {
-		publicPath: "/" + myConfig.output.publicPath,
-		stats: {
-			colors: true
-		}
-	}).listen(8080, "localhost", function(err) {
-		if(err) throw new gutil.PluginError("webpack-dev-server", err);
-		gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
-	});
+gulp.task('webpack:watch', () => {
+	if (isDevelopment) {
+		return runWebpack(true);
+	};
 });

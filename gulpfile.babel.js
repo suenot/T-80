@@ -2,10 +2,9 @@
 
 let runSequence = require('run-sequence');
 let gulp = require('gulp');
-require('require-dir')('./.gulp/default', {recurse: true});
 
 gulp.task('default', function(cb) {
-	// require('require-dir')('./.gulp/default', {recurse: true});
+	require('require-dir')('./.gulp/default', {recurse: true});
 	runSequence(
 		'del',
 		'copy',
@@ -13,11 +12,11 @@ gulp.task('default', function(cb) {
 			'sass',
 			'styl',
 			'jade',
-			'nunjucks',
-			'webpack'
+			'webpack',
+			'nunjucks'
 		],
 		[
-			// 'server',
+			'server',
 			'watch'
 		],
 		cb

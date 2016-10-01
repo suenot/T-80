@@ -1,6 +1,6 @@
 {
   "name": "t-80",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "dependencies": {
     "gulp-rimraf": "^0.2.0",
     "webpack": "^1.12.2",
@@ -55,6 +55,7 @@
     "gulp-util": "^3.0.6",
     "happypack": "^2.2.1",
     "imports-loader": "^0.6.5",
+    "jquery": "^3.1.1",
     "node-notifier": "^4.6.1",
     "npm-install-webpack-plugin": "^4.0.4",
     "postcss": "^5.0.9",
@@ -63,10 +64,12 @@
     "run-sequence": "^1.1.2",
     "source-map-loader": "^0.1.5",
     "webpack": "^1.13.2",
-    "webpack-stats-logger": "^1.0.1"
+    "webpack-stats-logger": "^1.0.1",
+    "webpack-stream": "^3.2.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/gulp --live"
+    "start": "./node_modules/.bin/gulp",
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp --serverof"
   },
   "description": "gulp no build",
   "main": "gulpfile.js",
