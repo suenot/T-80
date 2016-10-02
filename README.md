@@ -1,6 +1,10 @@
-# Gulp bundle for frontend
+# T-80
+Universtal starter kit for frontend
+- [gulp 3.9.1](http://gulpjs.com/)
+- [webpack 1.13.2](https://webpack.github.io/)
+- [stylus](http://stylus-lang.com/), [sass](http://sass-lang.com/), [postcss](http://postcss.org/)
+- [jade](https://pugjs.org/api/getting-started.html) or [nunjucks](https://mozilla.github.io/nunjucks/)
 
-## For development
 ### Install
 ```npm i```
 
