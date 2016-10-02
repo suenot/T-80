@@ -11,7 +11,7 @@ Universtal starter kit for frontend
 ### Start
 ```gulp``` or ```npm start``` (start with local gulp)
 
-## With flags
+### With flags
 - ```gulp --del --open --liveof --prefix```
 - ```--del``` - clean *public* folder, autostart in production
 - ```--open``` - open site in browser
