@@ -25,4 +25,4 @@ Universtal starter kit for frontend
 
 
 ### Webpack (only js)
-There is only one enter file: assets/js/app.webpack.js
+There is only one enter file: ```assets/js/app.webpack.js```
