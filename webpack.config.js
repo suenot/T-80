@@ -41,7 +41,10 @@ export default function makeWebpackConfig({
 			modulesDirectories: [
 				'node_modules'
 			],
-			extensions: ['.js', '']
+			extensions: ['.js', ''],
+			alias: {
+				jquery: __dirname + "/assets/vendor/jquery-2.2.4.js"
+			}
 		},
 		module: {
 			preLoaders: [{
