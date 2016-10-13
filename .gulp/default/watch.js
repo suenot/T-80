@@ -7,7 +7,6 @@ import {config} from '../../package.json';
 const isPug = config.template === 'pug';
 const isWebpack = config.webpack === 'true';
 
-console.log(config.webpack);
 gulp.task('watch', function() {
 	if (!serverOf) {
 		if (isPug) {
