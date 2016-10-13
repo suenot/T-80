@@ -26,8 +26,15 @@ Universtal starter kit for frontend
 
 
 ### Webpack (only js)
-To use ```webpack``` set variable ```config.webpack``` in package.json to ```true```;
-There is only one enter file: ```assets/js/app.webpack.js```
+To use ```webpack``` set variable ```config.webpack``` in package.json to ```true```.
+There is only one enter file: ```assets/js/app.webpack.js```.
 
 ### Nunjucks
-To use ```nunjucks``` set variable ```config.template``` in package.json to ```html``` and replace './assets' content with content from ```./tmp/assets_html```/
+To use ```nunjucks``` set variable ```config.template``` in package.json to ```html``` and replace './assets' content with content from ```./tmp/assets_html```.
+
+### Images
+```
+├── assets/                 # Sources
+│   ├── img/                # Template images
+│   ├── _img/               # Content images
+```
