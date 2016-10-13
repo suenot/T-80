@@ -3,7 +3,7 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const serverOf = gutil.env.serverof;
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
-import {config} from '../../package.json';
+import {config} from '../package.json';
 const isPug = config.template === 'pug';
 const isWebpack = config.webpack === 'true';
 

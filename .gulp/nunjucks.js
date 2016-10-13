@@ -2,9 +2,9 @@
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const connect = require('gulp-connect');
-const onError = require('../utils/errorHandler').onError;
+const onError = require('./errorHandler').onError;
 const nunjucks = require('gulp-nunjucks-html');
-import {config} from '../../package.json';
+import {config} from '../package.json';
 const isHtml = config.template === 'html';
 
 gulp.task('nunjucks', function() {

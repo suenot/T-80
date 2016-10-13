@@ -4,7 +4,7 @@ let runSequence = require('run-sequence');
 let gulp = require('gulp');
 
 gulp.task('default', function(cb) {
-	require('require-dir')('./.gulp/default', {recurse: true});
+	require('require-dir')('./.gulp', {recurse: true});
 	runSequence(
 		'del',
 		'copy',

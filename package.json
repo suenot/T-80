@@ -2,7 +2,19 @@
   "name": "t-80",
   "config": {
     "template": "pug",
-    "webpack": "false"
+    "webpack": "false",
+    "autoprefixer": {
+      "browsers": [
+        "android > 2",
+        "chrome > 40",
+        "firefox > 30",
+        "ie > 5",
+        "ios > 7",
+        "opera > 25",
+        "safari > 5"
+      ],
+      "cascade": "false"
+    }
   },
   "version": "3.0.0",
   "dependencies": {
@@ -16,8 +28,8 @@
     "gulp-filter": "^4.0.0",
     "gulp-if": "^2.0.1",
     "gulp-pug": "^3.1.0",
-    "gulp-pug-inheritance": "^0.2.1",
     "gulp-rimraf": "^0.2.0",
+    "gulp-sftp": "^0.1.5",
     "image-webpack-loader": "^1.6.2",
     "node-sass": "^3.4.2",
     "node-static": "^0.7.7",

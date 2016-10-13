@@ -3,7 +3,7 @@ import webpackStream from 'webpack-stream';
 import plumber from 'gulp-plumber';
 import errorHandler from 'gulp-plumber-error-handler';
 import statsLogger from 'webpack-stats-logger';
-import makeWebpackConfig from '../../webpack.config.js';
+import makeWebpackConfig from '../webpack.config.js';
 
 const { NODE_ENV, NOTIFY } = process.env;
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';

@@ -1,5 +1,5 @@
 // Error options
-let gutil = require('gulp-util');
+const gutil = require('gulp-util');
 
 module.exports = {
 	onError: function(err) {
