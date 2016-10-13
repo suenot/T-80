@@ -17,6 +17,7 @@
     "jade-loader": "^0.7.1",
     "node-sass": "^3.4.2",
     "node-static": "^0.7.7",
+    "rucksack-css": "^0.8.6",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
