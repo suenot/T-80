@@ -1,4 +1,5 @@
 # T-80
+![](https://github.com/suenot/T-80/blob/master/assets/_img/t-80.jpg)
 Universtal starter kit for frontend
 - [gulp 3.9.1](http://gulpjs.com/)
 - [webpack 1.13.2](https://webpack.github.io/)
