@@ -7,7 +7,7 @@ Universtal starter kit for frontend
 	- [flexibility](https://github.com/7rulnik/postcss-flexibility)
 	- [autoprefixer](https://github.com/postcss/autoprefixer)
 	- [rucksack](https://github.com/simplaio/rucksack)
-- [jade](https://pugjs.org/api/getting-started.html) or [nunjucks (html)](https://mozilla.github.io/nunjucks/)
+- [pug](https://pugjs.org/api/getting-started.html) or [nunjucks (html)](https://mozilla.github.io/nunjucks/)
 
 ### Install
 ```npm i```

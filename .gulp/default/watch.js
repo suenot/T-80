@@ -4,14 +4,14 @@ const gutil = require('gulp-util');
 const serverOf = gutil.env.serverof;
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 import {config} from '../../package.json';
-const isJade = config.template === 'jade';
+const isPug = config.template === 'pug';
 const isWebpack = config.webpack === 'true';
 
 console.log(config.webpack);
 gulp.task('watch', function() {
 	if (!serverOf) {
-		if (isJade) {
-			gulp.watch('assets/**/**/**/*.jade', ['jade']);
+		if (isPug) {
+			gulp.watch('assets/**/**/**/*.pug', ['pug']);
 		} else {
 			gulp.watch('assets/**/**/**/*.html', ['nunjucks']);
 		};

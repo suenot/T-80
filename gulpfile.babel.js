@@ -10,7 +10,7 @@ gulp.task('default', function(cb) {
 		'copy',
 		[
 			'sass',
-			'jade',
+			'pug',
 			'webpack',
 			'nunjucks'
 		],
