@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		{% include '_head.html' %}
+	</head>
+	<body>
+		<main class="main">
+			{% include 'blocks/header/header.html' %}
+			<div class="container">
+				{% block content %}{% endblock %}
+			</div>
+		</main>
+		{% include 'blocks/footer/footer.html' %}
+	</body>
+	{% include '_foot.html' %}
+</html>
