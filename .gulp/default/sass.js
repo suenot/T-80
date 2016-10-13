@@ -1,15 +1,15 @@
 'use strict';
-let gulp = require('gulp');
-let sass = require('gulp-sass');
-let postcss = require('gulp-postcss');
-let autoprefixer = require('autoprefixer');
-let gutil = require('gulp-util');
-let gulpif = require('gulp-if');
-let autoprefixerOptions = require('../utils/config').autoprefixer;
-let browserSync = require('browser-sync');
-let sourcemaps = require('gulp-sourcemaps');
-let isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
-let prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const gutil = require('gulp-util');
+const gulpif = require('gulp-if');
+const autoprefixerOptions = require('../utils/config').autoprefixer;
+const connect = require('gulp-connect');
+const sourcemaps = require('gulp-sourcemaps');
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+const prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
 
 gulp.task('sass', function () {
 	gulp.src([
@@ -17,10 +17,9 @@ gulp.task('sass', function () {
 		'!assets/{css,blocks}/**/**/_*.{sass,scss}'
 	])
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
-	// TODO: переделать на plumber
 	.pipe(sass().on('error', sass.logError))
 	.pipe(gulpif(prefix, postcss([autoprefixer(autoprefixerOptions), require('postcss-flexibility')])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest('public'))
-	.pipe(browserSync.reload({stream: true}))
+	.pipe(connect.reload());
 });

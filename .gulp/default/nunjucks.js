@@ -1,16 +1,19 @@
 'use strict';
-let gulp = require('gulp');
-let plumber = require('gulp-plumber');
-let browserSync = require('browser-sync');
-let src = {};
-let onError = require('../utils/errorHandler').onError;
-let nunjucks = require('gulp-nunjucks-html');
+const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const connect = require('gulp-connect');
+const onError = require('../utils/errorHandler').onError;
+const nunjucks = require('gulp-nunjucks-html');
+import {config} from '../../package.json';
+const isHtml = config.template === 'html';
 
 gulp.task('nunjucks', function() {
-	return gulp.src(['assets/**/**/**/*.html'])
-	.pipe(plumber({errorHandler: onError}))
-	.pipe(nunjucks({
-		searchPaths: ['assets']
-	}))
-	.pipe(gulp.dest('public'))
+	if (isHtml) {
+		return gulp.src(['assets/**/**/**/*.html'])
+		.pipe(plumber({errorHandler: onError}))
+		.pipe(nunjucks({
+			searchPaths: ['assets']
+		}))
+		.pipe(gulp.dest('public'))
+	}
 });
