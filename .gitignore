@@ -1,6 +1,7 @@
 node_modules
 tmp
 public/
+.yarn.lock
 
 # Packages #
 ############
