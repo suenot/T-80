@@ -11,7 +11,6 @@ gulp.task('default', function(cb) {
 		'copy',
 		[
 			'sass',
-			'styl',
 			'jade',
 			'webpack',
 			'nunjucks'
