@@ -9,7 +9,7 @@ const pug = require('gulp-pug');
 
 let pugFiles;
 if (isDevelopment) {
-	pugFiles = ['assets/**/**/**/*.pug', '!assets/**/**/**/_*.pug'];
+	pugFiles = ['assets/**/**/**/*.pug', '!assets/blocks/**/**/*.pug', '!assets/{_foot,_head,_layout}.pug'];
 } else {
 	pugFiles = ['assets/**/**/**/*.pug'];
 };

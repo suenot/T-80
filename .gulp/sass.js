@@ -14,8 +14,15 @@ const rucksack = require('rucksack-css');
 const plumber = require('gulp-plumber');
 const onError = require('./errorHandler').onError;
 
+let sassFiles;
+if (isDevelopment) {
+	sassFiles = 'assets/{css,vendor}/**/**/**/*.{sass,scss}';
+} else {
+	sassFiles = 'assets/{css,blocks,vendor}/**/**/**/*.{sass,scss}';
+};
+
 gulp.task('sass', function () {
-	gulp.src('assets/{css,blocks,vendor}/**/**/**/*.{sass,scss}')
+	gulp.src(sassFiles)
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(sass().on('error', sass.logError))
