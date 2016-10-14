@@ -6,7 +6,6 @@ var connect = require('gulp-connect');
 var newer = require('gulp-newer');
 var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 var rimraf = require('gulp-rimraf');
-var isProduction = process.env.NODE_ENV == 'production';
 var plumber = require('gulp-plumber');
 var nunjucks = require('gulp-nunjucks-html');
 var config = require('./package.json').config;
@@ -20,7 +19,8 @@ var gulpif = require('gulp-if');
 var sourcemaps = require('gulp-sourcemaps');
 var prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
 var serverOff = gutil.env.serveroff;
-var sftp = require('gulp-sftp');
+var isSftp = gutil.env.sftp;
+var isZip = gutil.env.zip;
 var isWebpack = config.webpack === 'true';
 var isRucksack = config.rucksack === 'true';
 var rucksack;
@@ -45,7 +45,9 @@ gulp.task('default', function(cb) {
 		],
 		[
 			'server',
-			'watch'
+			'watch',
+			'zip',
+			'sftp'
 		],
 		cb
 	);
@@ -63,7 +65,7 @@ gulp.task('copy', function() {
 
 // Del
 gulp.task('del', function() {
-	if (gutil.env.del || isProduction) {
+	if (gutil.env.del || !isDevelopment) {
 		return gulp.src(['public/*', '!public/CNAME', '!public/.git'], { read: false })
 		.pipe(rimraf({ force: true }))
 	}
@@ -147,29 +149,47 @@ gulp.task('server', function() {
 });
 
 // Sftp
-var server = {
-	host: '185.5.250.59',
-	user: 'frontend',
-	remotePath: '/home/frontend/sites/de-core.net'
-}
 gulp.task('sftp', function () {
-	return gulp.src('public/**/*')
-	.pipe(sftp({
-		host: server.host,
-		user: server.user,
-		remotePath: server.remotePath
-	}));
-});
-gulp.task('sftp-default', ['default'], function () {
-	return gulp.src('public/**/*')
-	.pipe(sftp({
-		host: server.host,
-		user: server.user,
-		remotePath: server.remotePath
-	}));
+	if (isSftp) {
+		var sftp = require('gulp-sftp');
+		var server = {
+			host: '185.5.250.59',
+			user: 'frontend',
+			remotePath: '/home/frontend/sites/de-core.net'
+		}
+		return gulp.src('public/**/*')
+		.pipe(sftp({
+			host: server.host,
+			user: server.user,
+			remotePath: server.remotePath
+		}));
+	}
 });
 
-// watch
+// Zip
+gulp.task('zip', function () {
+	if (isZip) {
+		var zip = require('gulp-zip');
+		var correctNumber = function correctNumber(number) {
+			return number < 10 ? '0' + number : number;
+		};
+		var getDateTime = function() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = correctNumber(now.getMonth() + 1);
+			var day = correctNumber(now.getDate());
+			var hours = correctNumber(now.getHours());
+			var minutes = correctNumber(now.getMinutes());
+			return year+'-'+month+'-'+day+'-'+hours+'-'+minutes;
+		};
+		console.log(getDateTime());
+		return gulp.src('public/*')
+			.pipe(zip('build-' + getDateTime() + '.zip'))
+			.pipe(gulp.dest('.'));
+		}
+});
+
+// Watch
 gulp.task('watch', function() {
 	if (!serverOff) {
 		if (isPug) {
@@ -186,6 +206,33 @@ gulp.task('watch', function() {
 			gulp.watch('public/js/app.min.js', ['livereload']);
 		}
 	}
+});
+
+// Favicons
+gulp.task('favicons', function () {
+	var favicons = require("gulp-favicons")
+	return gulp.src('source/img/favicon.png')
+	.pipe(plumber({errorHandler: onError}))
+	.pipe(favicons({
+		appName: 'My App',
+		appDescription: 'This is my application',
+		developerName: 'Super Developer',
+		developerURL: 'http://superdeveloper.com/',
+		background: '#020307',
+		path: 'favicons/',
+		url: 'http://superdeveloper.com/',
+		display: 'standalone',
+		orientation: 'portrait',
+		start_url: '/?homescreen=1',
+		version: 1.0,
+		logging: false,
+		online: false,
+		html: '_favicons.html',
+		pipeHTML: true,
+		replace: true
+	}))
+	// .on('error', gutil.log)
+	.pipe(gulp.dest('source/favicons'));
 });
 
 // Webpack

@@ -54,3 +54,12 @@ To use ```rucksack``` set variable ```config.rucksack``` in package.json to ```t
 - [fixed-sticky-0.1.7](https://github.com/filamentgroup/fixed-sticky)
 - [isvg](https://github.com/suenot/isvg)
 - [vv](https://github.com/suenot/vv)
+
+### Favicons
+```npm run favicons```
+
+### Clear+Build+Zip
+```npm run zip```
+
+### Clear+Build+Sftp
+```npm run sftp```

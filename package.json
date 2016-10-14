@@ -23,11 +23,13 @@
     "gulp-cached": "^1.1.0",
     "gulp-changed": "^1.3.2",
     "gulp-connect": "^5.0.0",
+    "gulp-favicons": "^2.2.6",
     "gulp-filter": "^4.0.0",
     "gulp-if": "^2.0.1",
     "gulp-pug": "^3.1.0",
     "gulp-rimraf": "^0.2.0",
     "gulp-sftp": "^0.1.5",
+    "gulp-zip": "^3.2.0",
     "node-sass": "^3.4.2",
     "node-static": "^0.7.7",
     "rucksack-css": "^0.8.6",
@@ -74,7 +76,10 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/gulp",
-    "build": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff"
+    "favicons": "./node_modules/.bin/gulp favicons",
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff",
+    "zip": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff --zip",
+    "sftp": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff --sftp"
   },
   "description": "gulp no build",
   "main": "gulpfile.js",
