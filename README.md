@@ -20,12 +20,12 @@ Universtal starter kit for frontend
 ### With flags
 - ```gulp --del --liveof --prefix```
 - ```--del``` - clean *public* folder, autostart in production
-- ```--liveof``` - livereload turnOff
+- ```--liveoff``` - livereload turnOff
 - ```--prefix``` - css prefixs for old browsers, autostart in production
-- ```--serverof``` - without server and watch
+- ```--serveroff``` - without server and watch
 
 ### For production: without sourcemaps in css and with clean *public* folder:
-```NODE_ENV=production gulp --serverof``` or ```npm run build``` (start with local gulp)
+```NODE_ENV=production gulp --serveroff``` or ```npm run build``` (start with local gulp)
 
 
 ### Webpack (only js)

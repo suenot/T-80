@@ -19,7 +19,7 @@ var autoprefixer = require('autoprefixer');
 var gulpif = require('gulp-if');
 var sourcemaps = require('gulp-sourcemaps');
 var prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
-var serverOf = gutil.env.serverof;
+var serverOff = gutil.env.serveroff;
 var sftp = require('gulp-sftp');
 var isWebpack = config.webpack === 'true';
 var isRucksack = config.rucksack === 'true';
@@ -137,7 +137,7 @@ if (isDevelopment) {
 	root = 'public';
 };
 gulp.task('server', function() {
-	if (!serverOf) {
+	if (!serverOff) {
 		connect.server({
 			root: root,
 			livereload: reloadBrowser,
@@ -171,7 +171,7 @@ gulp.task('sftp-default', ['default'], function () {
 
 // watch
 gulp.task('watch', function() {
-	if (!serverOf) {
+	if (!serverOff) {
 		if (isPug) {
 			gulp.watch('assets/**/**/**/*.pug', ['pug']);
 		} else {
@@ -213,17 +213,19 @@ if (isWebpack) {
 			.pipe(webpackStream(webpackConfig, null, statsLogger))
 			.pipe(gulp.dest('public/js'));
 	}
-	gulp.task('webpack:watch', () => {
+	gulp.task('webpack:watch', function() {
 		if (isDevelopment) {
 			return runWebpack(true);
 		};
 	});
-	gulp.task('webpack', () => {
-		if (isWebpack) {
-			if (!isDevelopment) {
-				return runWebpack(false);
-			};
-		};
+	gulp.task('webpack:build', function() {
+		return runWebpack(false);
 	});
 };
-
+gulp.task('webpack', function() {
+	if (isWebpack) {
+		if (!isDevelopment) {
+			gulp.start('webpack:build');
+		};
+	};
+});
