@@ -44,3 +44,13 @@ To use ```rucksack``` set variable ```config.rucksack``` in package.json to ```t
 │   ├── img/                # Template images
 │   ├── _img/               # Content images
 ```
+
+### Vendor plugins
+- [jquery-2.2.4](https://jquery.com/)
+- [jquery.browser-0.1.0](https://github.com/gabceb/jquery-browser-plugin)
+- [modernizr.js](https://modernizr.com/) (test flexbox)
+- [flexibility.js](https://github.com/jonathantneal/flexibility) (flexbox polyfill for ie8-9, postcss plugin included)
+- [bootstrap 4.0.0-alpha.4](http://v4-alpha.getbootstrap.com/)
+- [fixed-sticky-0.1.7](https://github.com/filamentgroup/fixed-sticky)
+- [isvg](https://github.com/suenot/isvg)
+- [vv](https://github.com/suenot/vv)
