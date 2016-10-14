@@ -20,14 +20,14 @@ var autoprefixer = require('autoprefixer');
 var gulpif = require('gulp-if');
 var sourcemaps = require('gulp-sourcemaps');
 var prefix = gutil.env.prefix || process.env.NODE_ENV == 'production';
-var rucksack = require('rucksack-css');
 var serverOf = gutil.env.serverof;
 var sftp = require('gulp-sftp');
 var isWebpack = config.webpack === 'true';
-var webpackStream = require('webpack-stream');
-var errorHandler = require('gulp-plumber-error-handler');
-var statsLogger = require('webpack-stats-logger');
-var makeWebpackConfig = require('./webpack.config.js');
+var isRucksack = config.rucksack === 'true';
+var rucksack;
+if (isRucksack) {
+	var rucksack = require('rucksack-css');
+}
 var onError = function(err) {
 	gutil.beep(),
 	gutil.log(gutil.colors.red(err))
@@ -119,7 +119,7 @@ gulp.task('sass', function () {
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
 	.pipe(sass().on('error', sass.logError))
-	.pipe(postcss([rucksack]))
+	.pipe(gulpif(isRucksack, postcss([rucksack])))
 	.pipe(gulpif(prefix, postcss([autoprefixer(config.autoprefixerOptions), require('postcss-flexibility')])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
 	.pipe(gulp.dest('public'))
@@ -190,30 +190,38 @@ gulp.task('watch', function() {
 });
 
 // Webpack
-var _process$env = process.env;
-var NODE_ENV = _process$env.NODE_ENV;
-var NOTIFY = _process$env.NOTIFY;
-function runWebpack(watch) {
-	var webpackConfig = makeWebpackConfig({
-		watch,
-		debug: isDevelopment,
-		sourcemaps: isDevelopment,
-		notify: NOTIFY
-	});
+if (isWebpack) {
+	var webpackStream = require('webpack-stream');
+	var errorHandler = require('gulp-plumber-error-handler');
+	var statsLogger = require('webpack-stats-logger');
+	var makeWebpackConfig = require('./webpack.config.js');
+	var _process$env = process.env;
+	var NODE_ENV = _process$env.NODE_ENV;
+	var NOTIFY = _process$env.NOTIFY;
+	function runWebpack(watch) {
+		var webpackConfig = makeWebpackConfig({
+			watch,
+			debug: isDevelopment,
+			sourcemaps: isDevelopment,
+			notify: NOTIFY
+		});
 
-	return gulp
-		.src('assets/js/app.webpack.js')
-		.pipe(plumber({errorHandler: errorHandler(`Error in 'scripts' task`)}))
-		.pipe(webpackStream(webpackConfig, null, statsLogger))
-		.pipe(gulp.dest('public/js'));
-}
+		return gulp
+			.src('assets/js/app.webpack.js')
+			.pipe(plumber({errorHandler: errorHandler(`Error in 'scripts' task`)}))
+			.pipe(webpackStream(webpackConfig, null, statsLogger))
+			.pipe(gulp.dest('public/js'));
+	}
+	gulp.task('webpack:watch', () => {
+		if (isDevelopment) {
+			return runWebpack(true);
+		};
+	});
+};
 gulp.task('webpack', () => {
-	if (!isDevelopment) {
-		return runWebpack(false);
-	};
-});
-gulp.task('webpack:watch', () => {
-	if (isDevelopment) {
-		return runWebpack(true);
+	if (isWebpack) {
+		if (!isDevelopment) {
+			return runWebpack(false);
+		};
 	};
 });
