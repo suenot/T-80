@@ -190,16 +190,24 @@ gulp.task('watch', function() {
 
 // Webpack
 if (isWebpack) {
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	var webpackStream = require('webpack-stream');
 	var errorHandler = require('gulp-plumber-error-handler');
 	var statsLogger = require('webpack-stats-logger');
-	var makeWebpackConfig = require('./webpack.config.js');
+	var allWebpackConfig = require('./webpack.config.js');
+	var makeWebpackConfig = _interopRequireDefault(allWebpackConfig);
 	var _process$env = process.env;
 	var NODE_ENV = _process$env.NODE_ENV;
 	var NOTIFY = _process$env.NOTIFY;
 	function runWebpack(watch) {
-		var webpackConfig = makeWebpackConfig({
-			watch,
+		// var webpackConfig = makeWebpackConfig({
+		// 	watch,
+		// 	debug: isDevelopment,
+		// 	sourcemaps: isDevelopment,
+		// 	notify: NOTIFY
+		// });
+		var webpackConfig = (0, makeWebpackConfig.default)({
+			watch: watch,
 			debug: isDevelopment,
 			sourcemaps: isDevelopment,
 			notify: NOTIFY
