@@ -200,12 +200,6 @@ if (isWebpack) {
 	var NODE_ENV = _process$env.NODE_ENV;
 	var NOTIFY = _process$env.NOTIFY;
 	function runWebpack(watch) {
-		// var webpackConfig = makeWebpackConfig({
-		// 	watch,
-		// 	debug: isDevelopment,
-		// 	sourcemaps: isDevelopment,
-		// 	notify: NOTIFY
-		// });
 		var webpackConfig = (0, makeWebpackConfig.default)({
 			watch: watch,
 			debug: isDevelopment,

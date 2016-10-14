@@ -2,8 +2,8 @@
   "name": "t-80",
   "config": {
     "template": "pug",
-    "webpack": "true",
-    "rucksack": "true",
+    "webpack": "false",
+    "rucksack": "false",
     "autoprefixer": {
       "browsers": [
         "android > 2",
