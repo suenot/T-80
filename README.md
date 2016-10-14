@@ -2,9 +2,9 @@
 Universtal starter kit for frontend
 ![](https://github.com/suenot/T-80/blob/master/assets/_img/t-80.jpg)
 
-- [gulp 3.9.1](http://gulpjs.com/)
+- [gulp 3.9.1](http://gulpjs.com/) (es5 syntax && one file: for ≈0.9s start)
 - [webpack 1.13.2](https://webpack.github.io/)
-- [sass](http://sass-lang.com/)
+- [sass](http://sass-lang.com/) (stylus in 20 times slower)
 - [postcss](http://postcss.org/) plugins:
 	- [flexibility](https://github.com/7rulnik/postcss-flexibility)
 	- [autoprefixer](https://github.com/postcss/autoprefixer)
@@ -34,6 +34,9 @@ There is only one enter file: ```assets/js/app.webpack.js```.
 
 ### Nunjucks
 To use ```nunjucks``` set variable ```config.template``` in package.json to ```html``` and replace './assets' content with content from ```./tmp/assets_html```.
+
+### Postcss plugins
+To use ```rucksack``` set variable ```config.rucksack``` in package.json to ```true```.
 
 ### Images
 ```
