@@ -218,11 +218,12 @@ if (isWebpack) {
 			return runWebpack(true);
 		};
 	});
-};
-gulp.task('webpack', () => {
-	if (isWebpack) {
-		if (!isDevelopment) {
-			return runWebpack(false);
+	gulp.task('webpack', () => {
+		if (isWebpack) {
+			if (!isDevelopment) {
+				return runWebpack(false);
+			};
 		};
-	};
-});
+	});
+};
+
