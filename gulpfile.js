@@ -7,7 +7,6 @@ var newer = require('gulp-newer');
 var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 var rimraf = require('gulp-rimraf');
 var isProduction = process.env.NODE_ENV == 'production';
-var browserSync = require('browser-sync');
 var plumber = require('gulp-plumber');
 var nunjucks = require('gulp-nunjucks-html');
 var config = require('./package.json').config;
