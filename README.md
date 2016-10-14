@@ -1,6 +1,6 @@
 # T-80
 Universtal starter kit for frontend
-![](https://github.com/suenot/T-80/blob/master/assets/_img/t-80.jpg)
+![](https://github.com/suenot/T-80/blob/master/source/_img/t-80.jpg)
 
 - [gulp 3.9.1](http://gulpjs.com/) (es5 syntax && one file: for ≈0.9s start)
 - [webpack 1.13.2](https://webpack.github.io/)
@@ -30,17 +30,17 @@ Universtal starter kit for frontend
 
 ### Webpack (only js)
 To use ```webpack``` set variable ```config.webpack``` in package.json to ```true```.
-There is only one enter file: ```assets/js/app.webpack.js```.
+There is only one enter file: ```source/js/app.webpack.js```.
 
 ### Nunjucks
-To use ```nunjucks``` set variable ```config.template``` in package.json to ```html``` and replace './assets' content with content from ```./tmp/assets_html```.
+To use ```nunjucks``` set variable ```config.template``` in package.json to ```html``` and replace './source' content with content from ```./tmp/source_html```.
 
 ### Postcss plugins
 To use ```rucksack``` set variable ```config.rucksack``` in package.json to ```true```.
 
 ### Images
 ```
-├── assets/                 # Sources
+├── source/
 │   ├── img/                # Template images
 │   ├── _img/               # Content images
 ```

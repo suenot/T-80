@@ -17,7 +17,7 @@
       "cascade": "false"
     }
   },
-  "version": "4.0.0",
+  "version": "4.1.0",
   "dependencies": {
     "expose-loader": "^0.7.1",
     "gulp-cached": "^1.1.0",
@@ -74,7 +74,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/gulp",
-    "build": "NODE_ENV=production ./node_modules/.bin/gulp --serverof"
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff"
   },
   "description": "gulp no build",
   "main": "gulpfile.js",

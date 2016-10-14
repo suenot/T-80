@@ -54,7 +54,7 @@ gulp.task('default', function(cb) {
 // Copy
 gulp.task('copy', function() {
 	if (!isDevelopment) {
-		return gulp.src(['assets/**/*.png', 'assets/**/*.jpg', 'assets/**/*.gif', 'assets/**/*.ico', 'assets/**/*.txt', 'assets/**/*.xml', 'assets/**/*.eot', 'assets/**/*.svg', 'assets/**/*.ttf', 'assets/**/*.woff', 'assets/**/*.woff2', 'assets/**/*.otf', 'assets/**/*.js', 'assets/**/*.css', '!assets/js/*.webpack.js'])
+		return gulp.src(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css', '!source/js/*.webpack.js'])
 		.pipe(newer('public'))
 		.pipe(gulp.dest('public'))
 		.pipe(connect.reload());
@@ -78,10 +78,10 @@ gulp.task('livereload', function () {
 // Nunjucks
 gulp.task('nunjucks', function() {
 	if (isHtml) {
-		return gulp.src(['assets/**/**/**/*.html'])
+		return gulp.src(['source/**/**/**/*.html'])
 		.pipe(plumber({errorHandler: onError}))
 		.pipe(nunjucks({
-			searchPaths: ['assets']
+			searchPaths: ['source']
 		}))
 		.pipe(gulp.dest('public'))
 	}
@@ -90,9 +90,9 @@ gulp.task('nunjucks', function() {
 // Pug
 var pugFiles;
 if (isDevelopment) {
-	pugFiles = ['assets/**/**/**/*.pug', '!assets/blocks/**/**/*.pug', '!assets/{_foot,_head,_layout}.pug'];
+	pugFiles = ['source/**/**/**/*.pug', '!source/blocks/**/**/*.pug', '!source/{_foot,_head,_layout}.pug'];
 } else {
-	pugFiles = ['assets/**/**/**/*.pug'];
+	pugFiles = ['source/**/**/**/*.pug'];
 };
 gulp.task('pug', function() {
 	if (isPug) {
@@ -100,7 +100,7 @@ gulp.task('pug', function() {
 		.pipe(plumber({errorHandler: onError}))
 		.pipe(pug({
 			pretty: true,
-			basedir: 'assets'
+			basedir: 'source'
 		}))
 		.pipe(gulp.dest('public'))
 	}
@@ -109,9 +109,9 @@ gulp.task('pug', function() {
 // Sass
 var sassFiles;
 if (isDevelopment) {
-	sassFiles = 'assets/{css,vendor}/**/**/**/*.{sass,scss}';
+	sassFiles = 'source/{css,vendor}/**/**/**/*.{sass,scss}';
 } else {
-	sassFiles = 'assets/{css,blocks,vendor}/**/**/**/*.{sass,scss}';
+	sassFiles = 'source/{css,blocks,vendor}/**/**/**/*.{sass,scss}';
 };
 gulp.task('sass', function () {
 	gulp.src(sassFiles)
@@ -132,7 +132,7 @@ if (gutil.env.liveof === true) {
 };
 var root;
 if (isDevelopment) {
-	root = ['public', 'assets'];
+	root = ['public', 'source'];
 } else {
 	root = 'public';
 };
@@ -173,14 +173,14 @@ gulp.task('sftp-default', ['default'], function () {
 gulp.task('watch', function() {
 	if (!serverOff) {
 		if (isPug) {
-			gulp.watch('assets/**/**/**/*.pug', ['pug']);
+			gulp.watch('source/**/**/**/*.pug', ['pug']);
 		} else {
-			gulp.watch('assets/**/**/**/*.html', ['nunjucks']);
+			gulp.watch('source/**/**/**/*.html', ['nunjucks']);
 		};
 		gulp.watch(['public/**/*.html', '!public/**/_*.html', '!public/blocks/**/*.html'], ['livereload']);
-		gulp.watch('assets/{css,blocks,vendor}/**/**/**/**/*.{sass,scss}', ['sass']);
-		gulp.watch('assets/{css,blocks,vendor}/**/**/**/**/*.css', ['livereload']);
-		gulp.watch(['assets/**/*.png', 'assets/**/*.jpg', 'assets/**/*.gif', 'assets/**/*.ico', 'assets/**/*.txt', 'assets/**/*.xml', 'assets/**/*.eot', 'assets/**/*.svg', 'assets/**/*.ttf', 'assets/**/*.woff', 'assets/**/*.woff2', 'assets/**/*.otf', 'assets/**/*.js', 'assets/**/*.css'], ['copy']);
+		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.{sass,scss}', ['sass']);
+		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.css', ['livereload']);
+		gulp.watch(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css'], ['copy']);
 		if (isDevelopment && isWebpack) {
 			gulp.start('webpack:watch');
 			gulp.watch('public/js/app.min.js', ['livereload']);
@@ -208,7 +208,7 @@ if (isWebpack) {
 		});
 
 		return gulp
-			.src('assets/js/app.webpack.js')
+			.src('source/js/app.webpack.js')
 			.pipe(plumber({errorHandler: errorHandler(`Error in 'scripts' task`)}))
 			.pipe(webpackStream(webpackConfig, null, statsLogger))
 			.pipe(gulp.dest('public/js'));
