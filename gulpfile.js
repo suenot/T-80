@@ -200,7 +200,9 @@ gulp.task('watch', function() {
 		gulp.watch(['public/**/*.html', '!public/**/_*.html', '!public/blocks/**/*.html'], ['livereload']);
 		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.{sass,scss}', ['sass']);
 		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.css', ['livereload']);
-		gulp.watch(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css'], ['copy']);
+		if (!isDevelopment) {
+			gulp.watch(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css'], ['copy', 'livereload']);
+		};
 		if (isDevelopment && isWebpack) {
 			gulp.start('webpack:watch');
 			gulp.watch('public/js/app.min.js', ['livereload']);
@@ -231,7 +233,6 @@ gulp.task('favicons', function () {
 		pipeHTML: true,
 		replace: true
 	}))
-	// .on('error', gutil.log)
 	.pipe(gulp.dest('source/favicons'));
 });
 
