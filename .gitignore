@@ -2,6 +2,8 @@ node_modules
 .tmp
 public/
 yarn.lock
+ctags
+.gulpfile.js.swp
 
 # Packages #
 ############
