@@ -201,7 +201,7 @@ gulp.task('watch', function() {
 		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.{sass,scss}', ['sass']);
 		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.css', ['livereload']);
 		if (!isDevelopment) {
-			gulp.watch(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css'], ['copy', 'livereload']);
+			gulp.watch(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css'], ['copy']);
 		};
 		if (isDevelopment && isWebpack) {
 			gulp.start('webpack:watch');
