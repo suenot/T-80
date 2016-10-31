@@ -119,7 +119,7 @@ gulp.task('sass', function () {
 	gulp.src(sassFiles)
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
-	.pipe(sass().on('error', sass.logError))
+	.pipe(sass())
 	.pipe(gulpif(isRucksack, postcss([rucksack])))
 	.pipe(gulpif(prefix, postcss([autoprefixer(config.autoprefixerOptions), require('postcss-flexibility')])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
