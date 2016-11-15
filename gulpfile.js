@@ -134,7 +134,7 @@ if (gutil.env.liveof === true) {
 };
 var root;
 if (isDevelopment) {
-	root = ['public', 'source'];
+	root = ['source', 'public'];
 } else {
 	root = 'public';
 };
@@ -157,7 +157,7 @@ gulp.task('sftp', function () {
 			user: 'frontend',
 			remotePath: '/home/frontend/sites/de-core.net'
 		}
-		return gulp.src('public/**/*')
+		return gulp.src('public/**/**/**/**/**/**/**/**/**/**/*')
 		.pipe(sftp({
 			host: server.host,
 			user: server.user,
@@ -183,7 +183,7 @@ gulp.task('zip', function () {
 			return year+'-'+month+'-'+day+'-'+hours+'-'+minutes;
 		};
 		console.log(getDateTime());
-		return gulp.src('public/*')
+		return gulp.src('public/**/**/**/**/**/**/**/**/**/**/*')
 			.pipe(zip('build-' + getDateTime() + '.zip'))
 			.pipe(gulp.dest('.'));
 		}
