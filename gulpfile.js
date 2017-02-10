@@ -2,6 +2,7 @@
 var runSequence = require('run-sequence');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var rename  = require('gulp-rename');
 var connect = require('gulp-connect');
 var newer = require('gulp-newer');
 var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
@@ -12,7 +13,6 @@ var config = require('./package.json').config;
 var isHtml = config.template === 'html';
 var isPug = config.template === 'pug';
 var pug = require('gulp-pug');
-var sass = require('gulp-sass');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var gulpif = require('gulp-if');
@@ -24,6 +24,12 @@ var isZip = gutil.env.zip;
 var isWebpack = config.webpack === 'true';
 var isRucksack = config.rucksack === 'true';
 var rucksack;
+var sugarss = require('sugarss');
+var easyImport = require('postcss-easy-import');
+
+var postcssSimpleVars = require('postcss-simple-vars');
+var postcssFlexibility = require('postcss-flexibility')
+
 if (isRucksack) {
 	var rucksack = require('rucksack-css');
 }
@@ -38,7 +44,7 @@ gulp.task('default', function(cb) {
 		'del',
 		'copy',
 		[
-			'sass',
+			'sss',
 			'pug',
 			'webpack',
 			'nunjucks'
@@ -108,21 +114,22 @@ gulp.task('pug', function() {
 	}
 });
 
-// Sass
-var sassFiles;
+// Sss
+var sssFiles;
 if (isDevelopment) {
-	sassFiles = 'source/{css,vendor}/**/**/**/*.{sass,scss}';
+	sssFiles = 'source/{css,vendor}/**/**/**/*.sss';
 } else {
-	sassFiles = 'source/{css,blocks,vendor}/**/**/**/*.{sass,scss}';
+	sssFiles = 'source/{css,blocks,vendor}/**/**/**/*.sss';
 };
-gulp.task('sass', function () {
-	gulp.src(sassFiles)
+gulp.task('sss', function () {
+	gulp.src(sssFiles)
 	.pipe(plumber({errorHandler: onError}))
 	.pipe(gulpif(isDevelopment, sourcemaps.init()))
-	.pipe(sass())
+	.pipe(postcss([easyImport({ extensions: ['.sss'] }), postcssSimpleVars], { parser: sugarss }))
 	.pipe(gulpif(isRucksack, postcss([rucksack])))
-	.pipe(gulpif(prefix, postcss([autoprefixer(config.autoprefixerOptions), require('postcss-flexibility')])))
+	.pipe(gulpif(prefix, postcss([autoprefixer(config.autoprefixerOptions), postcssFlexibility])))
 	.pipe(gulpif(isDevelopment, sourcemaps.write()))
+	.pipe(rename({ extname: '.css' }))
 	.pipe(gulp.dest('public'))
 	.pipe(connect.reload());
 });
@@ -198,7 +205,7 @@ gulp.task('watch', function() {
 			gulp.watch('source/**/**/**/*.html', ['nunjucks']);
 		};
 		gulp.watch(['public/**/*.html', '!public/**/_*.html', '!public/blocks/**/*.html'], ['livereload']);
-		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.{sass,scss}', ['sass']);
+		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.sss', ['sss']);
 		gulp.watch('source/{css,blocks,vendor}/**/**/**/**/*.css', ['livereload']);
 		if (!isDevelopment) {
 			gulp.watch(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css'], ['copy']);
