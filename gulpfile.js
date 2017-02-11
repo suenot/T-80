@@ -23,12 +23,23 @@ var isSftp = gutil.env.sftp;
 var isZip = gutil.env.zip;
 var isWebpack = config.webpack === 'true';
 var isRucksack = config.rucksack === 'true';
+var beeper = require('beeper');
+
 var rucksack;
 if (isRucksack) {
 	var rucksack = require('rucksack-css');
 }
+
 var onError = function(err) {
-	gutil.beep(),
+	beeper();
+	gulp.src(['public/css/app.css'])
+	.pipe(postcss([
+		require('postcss-inject')({
+			cssPlainText: 'body{background: red !important}}'
+		})
+	]))
+	.pipe(gulp.dest('public/css'))
+	.pipe(connect.reload());
 	gutil.log(gutil.colors.red(err))
 };
 
