@@ -35,7 +35,7 @@ var onError = function(err) {
 	gulp.src(['public/css/app.css'])
 	.pipe(postcss([
 		require('postcss-inject')({
-			cssPlainText: 'body{background: red !important}}'
+			cssPlainText: 'body{background: red !important}'
 		})
 	]))
 	.pipe(gulp.dest('public/css'))
