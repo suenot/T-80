@@ -32,14 +32,6 @@ if (isRucksack) {
 
 var onError = function(err) {
 	beeper();
-	gulp.src(['public/css/app.css'])
-	.pipe(postcss([
-		require('postcss-inject')({
-			cssPlainText: 'body{background: red !important}'
-		})
-	]))
-	.pipe(gulp.dest('public/css'))
-	.pipe(connect.reload());
 	gutil.log(gutil.colors.red(err))
 };
 
@@ -67,7 +59,7 @@ gulp.task('default', function(cb) {
 // Copy
 gulp.task('copy', function() {
 	if (!isDevelopment) {
-		return gulp.src(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.css', '!source/js/*.webpack.js'])
+		return gulp.src(['source/**/*.png', 'source/**/*.jpg', 'source/**/*.gif', 'source/**/*.ico', 'source/**/*.txt', 'source/**/*.xml', 'source/**/*.eot', 'source/**/*.svg', 'source/**/*.ttf', 'source/**/*.woff', 'source/**/*.woff2', 'source/**/*.otf', 'source/**/*.js', 'source/**/*.json', 'source/**/*.css', '!source/js/*.webpack.js'])
 		.pipe(newer('public'))
 		.pipe(gulp.dest('public'))
 		.pipe(connect.reload());

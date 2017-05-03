@@ -2,7 +2,7 @@
   "name": "t-80",
   "config": {
     "template": "pug",
-    "webpack": "false",
+    "webpack": "true",
     "rucksack": "false",
     "autoprefixer": {
       "browsers": [
@@ -31,7 +31,7 @@
     "gulp-rimraf": "^0.2.0",
     "gulp-sftp": "^0.1.5",
     "gulp-zip": "^3.2.0",
-    "node-sass": "^3.4.2",
+    "highcharts": "^5.0.10",
     "node-static": "^0.7.7",
     "postcss-inject": "^1.0.1",
     "rucksack-css": "^0.8.6",
@@ -61,7 +61,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-plumber-error-handler": "^1.0.0",
     "gulp-postcss": "^6.0.1",
-    "gulp-sass": "^2.1.1",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.6",
     "happypack": "^2.2.1",
@@ -79,9 +79,9 @@
   "scripts": {
     "start": "./node_modules/.bin/gulp",
     "favicons": "./node_modules/.bin/gulp favicons",
-    "build": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff",
-    "zip": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff --zip",
-    "sftp": "NODE_ENV=production ./node_modules/.bin/gulp --serveroff --sftp"
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp --del --serveroff",
+    "zip": "NODE_ENV=production ./node_modules/.bin/gulp --del --serveroff --zip",
+    "sftp": "NODE_ENV=production ./node_modules/.bin/gulp --del --serveroff --sftp"
   },
   "description": "gulp no build",
   "main": "gulpfile.js",
