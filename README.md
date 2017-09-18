@@ -27,6 +27,8 @@ Universtal starter kit for frontend
 ### For production: without sourcemaps in css and with clean *public* folder:
 ```NODE_ENV=production gulp --serveroff``` or ```npm run build``` (start with local gulp)
 
+### For windows NODE_ENV=production
+https://www.npmjs.com/package/cross-env
 
 ### Webpack (only js)
 To use ```webpack``` set variable ```config.webpack``` in package.json to ```true```.
@@ -64,3 +66,5 @@ To use ```rucksack``` set variable ```config.rucksack``` in package.json to ```t
 
 ### Clear+Build+Sftp
 ```npm run sftp```
+
+
