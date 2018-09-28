@@ -145,6 +145,7 @@ gulp.task('server', function() {
 	if (!serverOff) {
 		connect.server({
 			root: root,
+			host: '0.0.0.0',
 			livereload: reloadBrowser,
 			port: 3000
 		});
